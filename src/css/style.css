@@ -1,0 +1,29 @@
+.body {
+    font-family: 'Consolas', 'Courier New', monospace;
+    margin: 0;
+}
+
+.game {
+    background-color: lightblue;
+    width: 100;
+    height: 100vh;
+
+}
+
+.start-screen {
+    text-align: center;
+    padding: 30px;
+    font-size: 48px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    width: 500px;
+    background-color: lightgreen;
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%);
+}
+
+.start-screen:hover {
+    background-color: green;
+    cursor: pointer;
+}
