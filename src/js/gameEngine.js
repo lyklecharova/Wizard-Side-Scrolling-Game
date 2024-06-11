@@ -1,5 +1,6 @@
 function start(state, game) {
-    // Start game
+    game.createWizard(state.wizard);
+
     window.requestAnimationFrame(gameLoop.bind(null, state, game));
 }
 
