@@ -9,11 +9,22 @@ function gameLoop(state, game) {
     const { wizardElement } = game;
 
     // Move wizard
+    if (state.keys.KeyA) {
+        wizard.positionX -= wizard.speed;
+    }
+    if (state.keys.KeyS) {
+        wizard.positionY += wizard.speed;
+    }
     if (state.keys.KeyD) {
-        wizard.positionX += 2;
+        wizard.positionX += wizard.speed;
+    }
+
+    if (state.keys.KeyW) {
+        wizard.positionY -= wizard.speed;
     }
     // Render
     wizardElement.style.left = wizard.positionX + 'px';
+    wizardElement.style.top = wizard.positionY + 'px';
 
     window.requestAnimationFrame(gameLoop.bind(null, state, game));
 }

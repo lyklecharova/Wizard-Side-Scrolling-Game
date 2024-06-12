@@ -9,6 +9,7 @@ function initState() {
             height: 100,
             positionX: startX,
             positionY: startY,
+            speed: 2,
         },
         keys: {}
     }
