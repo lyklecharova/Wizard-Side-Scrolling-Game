@@ -13,7 +13,6 @@ document.addEventListener('keydown', (e) => {
     if (availableKeys.includes(e.code)) {
         state.keys[e.code] = true;
     }
-
 });
 
 document.addEventListener('keyup', (e) => {
