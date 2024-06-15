@@ -24,21 +24,9 @@ function gameLoop(state, game, timestamp) {
         state.bugStats.nextSpawnTimestamp = timestamp + Math.random() * state.bugStats.maxSpawnInterval;
     }
 
-    // Render fireballs
-    document.querySelectorAll('.fireball').forEach(fireball => {
-        let posX = parseInt(fireball.style.left);
-
-        if (posX > game.gameScreen.offsetWidth) {
-            fireball.remove();
-
-        } else {
-            fireball.style.left = posX + state.fireball.speed + 'px';
-        }
-
-    });
-
     // Render bugs
-    document.querySelectorAll('.bug').forEach(bug => {
+    let bugElements = document.querySelectorAll('.bug');
+    bugElements.forEach(bug => {
         let posX = parseInt((bug.style.left));
 
         if (posX > 0) {
@@ -47,6 +35,26 @@ function gameLoop(state, game, timestamp) {
             bug.remove();
         }
 
+    });
+
+    // Render fireballs
+    document.querySelectorAll('.fireball').forEach(fireball => {
+        let posX = parseInt(fireball.style.left);
+
+        // Detect collision
+        bugElements.forEach(bug => {
+            if (detectCollision(bug, fireball)) {
+                bug.remove();
+                fireball.remove();
+            }
+        });
+
+        if (posX > game.gameScreen.offsetWidth) {
+            fireball.remove();
+
+        } else {
+            fireball.style.left = posX + state.fireball.speed + 'px';
+        }
     });
 
     // Render wizard
@@ -72,4 +80,16 @@ function modifyWizardPosition(state, game) {
     if (state.keys.KeyW) {
         wizard.positionY = Math.max(wizard.positionY - wizard.speed, 0);
     }
+}
+
+function detectCollision(objectA, objectB) {
+    let first = objectA.getBoundingClientRect();
+    let second = objectB.getBoundingClientRect();
+
+    let hasCollision = !(first.top > second.bottom ||
+        first.bottom > second.top ||
+        first.right < second.left ||
+        first.left > second.right);
+
+    return hasCollision;
 }
