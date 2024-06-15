@@ -30,7 +30,6 @@ function initGameObject() {
             fireballElement.style.width = fireball.width + 'px';
             fireballElement.style.height = fireball.height + 'px';
 
-
             gameScreen.appendChild(fireballElement);
         },
         createBug(stats) {
@@ -41,7 +40,6 @@ function initGameObject() {
 
             bugElement.style.left = gameScreen.offsetWidth - stats.width + 'px';
             bugElement.style.top = Math.floor(Math.random() * (gameScreen.offsetHeight - stats.height)) + 'px';
-
 
             gameScreen.appendChild(bugElement);
         }
